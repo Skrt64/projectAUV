@@ -100,16 +100,22 @@ if (millis() - lastCheckTime >= CHECK_INTERVAL) {
             }
         } else {
             stableCount = 0; // ถ้า EX ไม่ใช่ 999 ให้รีเซ็ต
-        }
+            if (mode == 1) {
+                    setColor(0, 255, 0); // ไฟเขียว
+                } else if (mode == 2) {
+                    setColor(255, 0, 0); // ไฟแดง
+                }
+              }   
     }
 
     // ควบคุมมอเตอร์
     if (mode == 1) {
-        mappedValue = map(EX, 120, -120, 1000, 2000);
+        mappedValue = map(EY, 120, -120, 1000, 2000);
         mappedValue = constrain(mappedValue, 1000, 2000);
         motor1.writeMicroseconds(mappedValue);
         motor2.writeMicroseconds(mappedValue);
     } else if (mode == 2) {
+        
         motor1.writeMicroseconds(1505);
         motor2.writeMicroseconds(1505);
     }
