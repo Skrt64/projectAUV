@@ -8,8 +8,8 @@
 #include <ESP32Servo.h>
 
 // WiFi Configuration
-const char* ssid = "LoveMiw";
-const char* password = "66444664";
+const char* ssid = "G2";
+const char* password = "23456789";
 
 // Webserver
 WebServer server(80);
@@ -330,7 +330,7 @@ PIDOutput calculatePID(float angleY, float angleZ, float depth) {
 // Task สำหรับการวัดค่าเซ็นเซอร์และควบคุมมอเตอร์
 void controlTask(void *parameter) {
     TickType_t xLastWakeTime = xTaskGetTickCount();
-    const TickType_t xFrequency = pdMS_TO_TICKS(20); // 50Hz control loop
+    const TickType_t xFrequency = pdMS_TO_TICKSdata(20); // 50Hz control loop
     
     while(true) {
         // อ่านค่าเซ็นเซอร์
@@ -483,7 +483,6 @@ void setup() {
         while(1);
     }
     depthSensor.setModel(MS5837::MS5837_30BA);
-    depthSensor.init();
     depthSensor.setFluidDensity(997); // kg/m^3 for freshwater
     Serial.println("MS5837 initialized");
     
